@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('peserta/login');
+        return view('peserta/dashboard');
     }
 }
