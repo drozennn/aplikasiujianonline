@@ -29,7 +29,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// Autentikasi login peserta
 $routes->get('/', 'Peserta::login');
+$routes->post('/auth', 'Peserta::auth');
+$routes->get('/logout', 'Peserta::logout');
+
+// dashboard peserta
+$routes->get('/dashboard', 'Peserta::index');
 
 /*
  * --------------------------------------------------------------------
