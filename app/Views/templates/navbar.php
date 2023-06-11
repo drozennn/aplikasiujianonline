@@ -7,6 +7,7 @@
                 <div class="bg-white w-7 h-7 mr-2 flex items-center justify-center rounded-full overflow-hidden">
                     <img src="/asset/user-icon.png" alt="" width="25px">
                 </div>
+                 
                 <div class="text-white font-bold text-lg">Hello, <?= session()->get('account')['nama'] ?></div>
             </div>
         </div>

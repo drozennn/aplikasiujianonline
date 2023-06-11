@@ -13,10 +13,11 @@ class peserta extends BaseController
         $this->userModel = new UserModel();
     }
 
-    public function login(){
+    public function login()
+    {
         return view('peserta/login');
     }
-    
+
     public function auth()
     {
         if (!$this->validate([
@@ -35,34 +36,36 @@ class peserta extends BaseController
         ])) {
             return redirect()->back()->withInput();
         }
-        
+
         $email = $this->request->getVar('email');
-        $password = $this->request->getVar('password'); 
+        $password = $this->request->getVar('password');
 
         $account = $this->userModel->getEmail($email);
-        
-        if(!$account == false){
-            if($password == $account['password']){
+
+        if (!$account == false) {
+            if ($password == $account['password']) {
                 session()->set('account', $account);
                 return redirect()->to(base_url('/dashboard'));
-            }else{
+            } else {
                 session()->setFlashdata('alert-login', 'Password Salah');
                 return redirect()->to(base_url('/'))->withInput();
             }
-        }else{
+        } else {
             session()->setFlashdata('alert-login', 'Email tidak terdaftar');
             return redirect()->to(base_url('/'))->withInput();
         }
     }
 
-    public function index() {
+    public function index()
+    {
         $data = [
             'title' => 'Dashboard'
         ];
         return view('peserta/dashboard', $data);
     }
 
-    public function logout() {
+    public function logout()
+    {
         session()->destroy();
         return redirect()->to(base_url('/'));
     }
