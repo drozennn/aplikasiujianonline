@@ -13,7 +13,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'nim', 'email', 'password', 'token', 'nilai', 'status'];
+    protected $allowedFields    = ['nama', 'nim', 'email', 'password', 'token', 'nilai', 'status','paket'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,13 +39,13 @@ class UserModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    // public function getUser($id = false){
-    //     if($id == false){
-    //         return $this->findAll();
-    //     }
+    public function getUser($id = false){
+        if($id == false){
+            return $this->findAll();
+        }
 
-    //     return $this->where(['id' => $id])->first();
-    // }
+        return $this->where(['id' => $id])->first();
+    }
 
     public function getEmail($email) {
         return $this->where(['email' => $email])->first();
