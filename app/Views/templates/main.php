@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <title>Website dengan Navbar dan Sidebar</title>
+    <title><?= $title ?></title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <?= $this->include('templates/sidebar') ?>
         <div class="flex-1" id="content">
             <!-- Content -->
-            <div class="p-4 mt-14 sm:ml-64 h-screen">
+            <div class="p-4 mt-16 sm:ml-64 h-screen">
                 <?= $this->renderSection('content') ?>
             </div>
         </div>

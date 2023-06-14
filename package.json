@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "npx tailwindcss -i ./public/src/input.css -o ./public/src/style.css --watch"
+    "dev": "npx tailwindcss -i ./public/src/input.css -o ./public/src/style.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2"
+  },
+  "devDependencies": {
+    "daisyui": "^3.1.0"
   }
 }
