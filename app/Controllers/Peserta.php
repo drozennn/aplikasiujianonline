@@ -85,7 +85,38 @@ class peserta extends BaseController
             'soal' => $this->soalModel->countSoal(session()->get('account')['paket'])
         ];
 
-        return view('peserta/ujian', $data);
+        return view('peserta/ujianbeta', $data);
         
+    }
+
+    public function token()
+    {
+        $token = $this->request->getVar('inputtoken');
+        $tokendb =  $this->userModel->getUser(session()->get('account')['id']);
+
+        if (!$this->validate([
+            'inputtoken'=>[
+                'rules'=>'required',
+                'error'=>[
+                    'required'=>"Harap mengisi token terlebih dahulu!"
+                ]
+            ]
+        ])){
+            return redirect()->back()->withInput();
+        }
+
+        if ($token != $tokendb['token']){
+            session()->setFlashdata('token-false', 'Token yang anda masukkan salah!');
+            return redirect()->to(base_url('/ujian'));
+        }else{
+
+            $data = [
+                'title' => 'Ujian',
+                'peserta' => $this->userModel->getUser(session()->get('account')['id']),
+                'soal' => $this->soalModel->countSoal(session()->get('account')['paket'])
+            ];
+
+            return view('/peserta/soal', $data);
+        }
     }
 }

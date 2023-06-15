@@ -50,6 +50,5 @@ class UserModel extends Model
     public function getEmail($email) {
         return $this->where(['email' => $email])->first();
     }
-
     
 }

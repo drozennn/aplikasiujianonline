@@ -43,6 +43,7 @@ $routes->get('/ujian', 'Peserta::ujian');
 // $routes->get('/admin/hasilujian', 'AdminController::examresult');
 // dashboard peserta
 $routes->get('/dashboard', 'Peserta::index');
+$routes->post('/soal', 'Peserta::token');
 
 /*
  * --------------------------------------------------------------------
