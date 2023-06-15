@@ -1,5 +1,6 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
+<<<<<<< HEAD
 <div class="overflow-x-auto">
   <table class="table table-zebra">
     <!-- head -->
@@ -34,6 +35,7 @@
         <td>Red</td>
       </tr>
     </tbody>
-  </table>
+=======
+ </table>
 </div>
 <?= $this->endSection(); ?>
