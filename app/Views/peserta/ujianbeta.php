@@ -12,7 +12,8 @@
     <p class="font-poppins text-2xl mb-6 font-bold lg:text-6xl md:text-4xl">Ujian IMEV 2023</p>
 
     <?php if ($peserta['status'] == 'belum') : ?>
-    <p class="font-poppins">Anda memiliki 1 kesempatan untuk mengerjakan ujian ini.</p>
+        <p class="font-poppins">Jumlah Soal : <?= $soal ; ?></p>
+        <p class="font-poppins">Anda memiliki 1 kesempatan untuk mengerjakan ujian ini.</p>
     <div>
     <label for="inputtoken" class="font-poppins text-white mb-1">Token</p>
     <form method="POST" action="/soal" class="lg:flex">
