@@ -109,7 +109,16 @@ class peserta extends BaseController
             session()->setFlashdata('token-false', 'Token yang anda masukkan salah!');
             return redirect()->to(base_url('/ujian'));
         }else{
+            if (session()->get('account')['status'] == 'belum'){
+            
+            $update = [
+                'id' => session()->get('account')['id'],
+                'status' => 'sudah',
+            ];
 
+            $this->userModel->save($update);
+        }
+        
             $data = [
                 'title' => 'Ujian',
                 'peserta' => $this->userModel->getUser(session()->get('account')['id']),
