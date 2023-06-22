@@ -1,0 +1,29 @@
+[33mcommit 178bdb6bad458f5559f636b2fc9e2cdb97f2f620[m[33m ([m[1;36mHEAD -> [m[1;32mfazril[m[33m, [m[1;31morigin/fazril[m[33m)[m
+Author: MhmdFazril <mfazrilmaulana@gmail.com>
+Date:   Fri Jun 9 22:21:43 2023 +0700
+
+    perbaikan login, sidebar, dan navbar serta penambahan asset
+
+[33mcommit 48bb364eca98f5fec1d80640ba20d70f3610e32e[m
+Author: MhmdFazril <mfazrilmaulana@gmail.com>
+Date:   Fri Jun 9 15:06:35 2023 +0700
+
+    membuat tampilan login peserta
+
+[33mcommit 7467c236416fff9a7d5612955c72afac422f39b3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/agus[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: drozennn <rafialyahya@gmail.com>
+Date:   Thu Jun 8 22:26:03 2023 +0700
+
+    finishing template navbar dan sidebar
+
+[33mcommit 0363e53fbea8aeafb440c8c53e5b86543a5d0314[m
+Author: drozennn <rafialyahya@gmail.com>
+Date:   Wed Jun 7 23:23:22 2023 +0700
+
+    bikin template header dan sidebar
+
+[33mcommit 6cf2b987f630d379f23d089e40f9546644f11301[m
+Author: drozennn <rafialyahya@gmail.com>
+Date:   Wed Jun 7 20:52:22 2023 +0700
+
+    Initial Commit
