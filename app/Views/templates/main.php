@@ -20,7 +20,7 @@
         <?= $this->include('templates/sidebar') ?>
         <div class="flex-1" id="content">
             <!-- Content -->
-            <div class="p-4 mt-14 sm:ml-64 h-screen">
+            <div class="p-4 mt-16 sm:ml-64 h-screen">
                 <?= $this->renderSection('content') ?>
             </div>
         </div>

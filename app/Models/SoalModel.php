@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class SoalModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'master_user';
+    protected $table            = 'master_soal';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'nim', 'email', 'password', 'token', 'nilai', 'status','paket'];
+    protected $allowedFields    = ['soal', 'jawaban_benar', 'gambar', 'paket', 'poin'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,15 +39,7 @@ class UserModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getUser($id = false){
-        if($id == false){
-            return $this->findAll();
-        }
-
-        return $this->where(['id' => $id])->first();
-    }
-
-    public function getEmail($email) {
-        return $this->where(['email' => $email])->first();
+    public function countSoal($paket){
+        return $this->where(['paket'=>$paket])->countAllResults();;
     }
 }
