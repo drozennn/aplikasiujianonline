@@ -13,10 +13,10 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'nim', 'email', 'password', 'token', 'nilai', 'status','paket'];
+    protected $allowedFields    = ['nama', 'nim', 'univ', 'email', 'password', 'token', 'status', 'waktu_mulai', 'waktu_selesai'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

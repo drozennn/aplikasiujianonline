@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SoalModel extends Model
+class JawabanModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'master_soal';
+    protected $table            = 'jawaban_peserta';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['soal', 'jawaban_benar', 'gambar'];
+    protected $allowedFields    = ['jawaban', 'id_soal', 'id_user'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,11 +39,19 @@ class SoalModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getSoal($id = false) {
-        if($id == false){
+
+    public function getData($id = false) {
+        if ($id == false){
             return $this->findAll();
         }
-        
+
         return $this->where(['id' => $id])->first();
+    }
+
+    public function getDataByName($id) {
+        $this->select('jawaban_peserta.*,master_soal.soal,master_user.nama');
+        $this->join('master_soal', 'master_soal.id = id_soal');
+        $this->join('master_user', 'master_user.id = id_user');
+        return $this->where(['id_user' => $id])->findAll();
     }
 }

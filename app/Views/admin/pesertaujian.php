@@ -1,45 +1,41 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
-<div class="overflow-x-auto">
-
-  <div class="overflow-x-auto">
-    <table class="table table-xs">
-      <thead>
+<div class="p-3">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Item data pertama -->
+    <div class="p-4 bg-white shadow">
+      <table>
         <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Nim</th>
-          <th>Paket</th>
-          <th>Status</th>
-
+          <td>nama</td>
+          <td>univ</td>
+          <td>token</td>
+          <td>nama</td>
+          <td>univ</td>
+          <td>token</td>          
         </tr>
-      </thead>
-      <tbody>
-        <?php $no = 0; ?>
-        <?php foreach ($get as $user) : ?>
-          <tr>
-            <th><?= ++$no; ?></th>
-            <td><?= $user['nama']; ?></td>
-            <td><?= $user['nim']; ?></td>
-            <td><?= $user['paket']; ?></td>
-            <td><?= $user['status']; ?></td>
-
-          </tr>
-
-        <?php endforeach; ?>
-      <tfoot>
         <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Nim</th>
-          <th>Paket</th>
-          <th>Status</th>
+          <td>asep</td>
+          <td>pnj</td>
+          <td>asdaqw</td>
+          <td>asep</td>
+          <td>pnj</td>
+          <td>asdaqw</td>
         </tr>
-      </tfoot>
+      </table>
+    </div>
 
-    </table>
-  </div>
+    <!-- Item data kedua -->
+    <div class="p-4 bg-white shadow">
+      <!-- Konten item data -->
+    </div>
 
+    <!-- Item data ketiga -->
+    <div class="p-4 bg-white shadow">
+      <!-- Konten item data -->
+    </div>
 
+    <!-- Dan seterusnya... -->
+</div>
 
-  <?= $this->endSection(); ?>
+</div>
+<?= $this->endSection(); ?>

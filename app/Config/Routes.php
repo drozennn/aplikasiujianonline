@@ -30,9 +30,24 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+// dashboard peserta
+$routes->get('/dashboard', 'Peserta::index');
+$routes->get('/ujian', 'Peserta::ujian');
+$routes->post('/soal', 'Peserta::token');
 $routes->get('/', 'Peserta::login');
 $routes->post('/auth', 'Peserta::auth');
 $routes->get('/logout', 'Peserta::logout');
+$routes->get('/shuffle', 'Peserta::shuffle');
+$routes->get('/loadSoal/(:num)', 'Peserta::loadSoal/$1');
+$routes->post('/loadSoal/(:num)', 'Peserta::jawaban/$1');
+$routes->get('/confirm', 'Peserta::confirm');
+$routes->get('/saveJawaban', 'Peserta::save');
+$routes->get('/selesai', 'Peserta::selesai');
+$routes->get('/hasilujian', 'Peserta::hasilUjian');
+
+
+
+
 //dashboard admin
 $routes->get('/admin', 'AdminController::login');
 $routes->post('/admin/auth', 'AdminController::auth');
@@ -40,11 +55,7 @@ $routes->get('/admin/logout', 'AdminController::logout');
 $routes->get('/admin/dashboard', 'AdminController::index');
 $routes->get('/admin/pesertaujian', 'AdminController::examuser');
 $routes->get('/admin/hasilujian', 'AdminController::examresult');
-// dashboard peserta
-$routes->get('/dashboard', 'Peserta::index');
 
-$routes->get('/ujian', 'Peserta::ujian');
-$routes->post('/soal', 'Peserta::token');
 
 /*
  * --------------------------------------------------------------------

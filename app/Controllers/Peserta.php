@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\JawabanModel;
 use App\Models\UserModel;
 use App\Models\SoalModel;
 
@@ -9,11 +10,13 @@ class peserta extends BaseController
 {
     protected $userModel;
     protected $soalModel;
+    protected $jawabanModel;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->soalModel = new SoalModel();
+        $this->jawabanModel = new JawabanModel();
     }
 
     public function login()
@@ -44,10 +47,11 @@ class peserta extends BaseController
         $password = $this->request->getVar('password');
 
         $account = $this->userModel->getEmail($email);
-        $name = $this->userModel->getUser($account['id']);
+        // $name = $this->userModel->getUser($account['id']);
 
         if (!$account == false) {
             if ($password == $account['password']) {
+                $name = $this->userModel->getUser($account['id']);
                 session()->set('account', $account);
                 session()->setFlashData('loginsukses', 'Selamat Datang, '.$name['nama']);
                 return redirect()->to(base_url('/dashboard'));
@@ -81,50 +85,153 @@ class peserta extends BaseController
         $data = [
             'title' => 'Daftar Ujian',
             'peserta' => $this->userModel->getUser(session()->get('account')['id']),
-            'soal' => $this->soalModel->countSoal(session()->get('account')['paket'])
+            'soal' => $this->soalModel->getSoal()
         ];
 
-        return view('peserta/ujianbeta', $data);
+        return view('peserta/ujian', $data);
         
     }
 
     public function token()
     {
-        $token = $this->request->getVar('inputtoken');
-        $tokendb =  $this->userModel->getUser(session()->get('account')['id']);
+        if(session()->get('account')['status'] == 'belum'){
+            $token = $this->request->getVar('inputtoken');
+            $tokendb =  $this->userModel->getUser(session()->get('account')['id']);
 
-        if (!$this->validate([
-            'inputtoken'=>[
-                'rules'=>'required',
-                'error'=>[
-                    'required'=>"Harap mengisi token terlebih dahulu!"
+            if (!$this->validate([
+                'inputtoken'=>[
+                    'rules'=>'required',
+                    'errors'=>[
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
-            ]
-        ])){
-            return redirect()->back()->withInput();
-        }
+            ])){
+                return redirect()->back()->withInput();
+            }
 
-        if ($token != $tokendb['token']){
-            session()->setFlashdata('token-false', 'Token yang anda masukkan salah!');
-            return redirect()->to(base_url('/ujian'));
-        }else{
-            if (session()->get('account')['status'] == 'belum'){
-            
-            $update = [
-                'id' => session()->get('account')['id'],
-                'status' => 'sudah',
+            if ($token != $tokendb['token']){
+                session()->setFlashdata('token-false', 'Token yang anda masukkan salah!');
+                return redirect()->to(base_url('/ujian'));
+            } else{
+                $this->userModel->save([
+                    'id' => session()->get('account')['id'],
+                    'status' => 'ujian',
+                ]);
+
+                session()->set('account', $this->userModel->getUser(session()->get('account')['id']));
+
+
+                return redirect()->to(base_url('/shuffle'));
+            }
+        } elseif (session()->get('account')['status'] == 'ujian'){
+
+            return redirect()->to(base_url('/loadSoal/1'));
+        }
+    }
+
+    public function shuffle() {
+        $array = [];
+        $soal = $this->soalModel->getSoal();
+        foreach ($soal as $data){
+            $array[] = [
+                'id' => $data['id'],
+                'soal' => $data['soal'],
+                'gambar' => $data['gambar'],
+                'jawaban' => null
             ];
-
-            $this->userModel->save($update);
         }
-        
+
+        shuffle($array);
+
+        foreach ($array as $index => &$item) {
+            $item['urutan'] = $index + 1;
+        }
+
+        session()->set('soal', $array);
+        return redirect()->to(base_url('/loadSoal/1'));
+    }
+
+    public function loadSoal($idx) {
+
+        $intIndex = intval($idx);
+        $indexFinal = $intIndex - 1;
+        $indexAkhir = count(session()->get('soal'));
+
             $data = [
-                'title' => 'Ujian',
-                'peserta' => $this->userModel->getUser(session()->get('account')['id']),
-                'soal' => $this->soalModel->countSoal(session()->get('account')['paket'])
+                'title' => 'Ujian IMEV',
+                'soal' => session()->get('soal')[$indexFinal],
+                'jmlSoal' => session()->get('soal'),
+                'akhir' => $indexAkhir
             ];
 
-            return view('/peserta/soal', $data);
+            return view('peserta/soal', $data);
+    }
+
+    public function jawaban($idUrutan) {
+        $posisi = $idUrutan;
+        $jmlIndex = count($this->soalModel->getSoal());
+
+        $testArr = [
+            'button' => $this->request->getVar('button'),
+            'jawaban' => $this->request->getVar('jawaban')
+        ];
+        $array = session()->get('soal');
+        $array[$idUrutan-1]['jawaban'] = $testArr['jawaban'];
+        session()->set('soal', $array);
+
+        if($testArr['button'] == 'next'){
+            if($posisi == $jmlIndex){
+                return redirect()->to(base_url('/confirm'));
+            }
+            $idUrutan++;
+        }elseif ($testArr['button'] == 'previous'){
+            $idUrutan--;
+        } else{
+            return redirect()->to(base_url('/confirm'));
         }
+        return redirect()->to(base_url("/loadSoal/$idUrutan"));
+    }
+
+    public function confirm() {
+        $data = [
+            'title' => 'Finish',
+            'data' => session()->get('soal')
+        ];
+
+        return view('peserta/confirm', $data);
+    }
+
+    public function save() {
+        $isi = session()->get('soal');
+
+        foreach($isi as $row){
+            $this->jawabanModel->save([
+                'jawaban' => $row['jawaban'],
+                'id_soal' => $row['id'],
+                'id_user' => session()->get('account')['id']
+            ]);
+        }
+
+        return redirect()->to(base_url('/selesai'));
+    }
+    
+    public function selesai() {
+        $this->userModel->save([
+            'id' => session()->get('account')['id'],
+            'status' => 'selesai',
+        ]);
+        session()->set('account', $this->userModel->getUser(session()->get('account')['id']));
+
+        session()->setFlashdata('selesai', 'Ujian telah selesai');
+        return redirect()->to(base_url('/ujian'));
+    }
+
+    public function hasilUjian() {
+        $data =[
+            'title' => 'Hasil Ujian',
+            'data' => $this->jawabanModel->getDataByName(session()->get('account')['id'])
+        ];
+
+        return view('peserta/hasilujian', $data);
     }
 }

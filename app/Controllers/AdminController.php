@@ -71,23 +71,16 @@ class AdminController extends BaseController
             'nama' => $this->userModel->getUser()
         ];
         $this->data['get'] = $this->userModel->getUser();
-  
         
-       
-
         return view('admin/pesertaujian', $this->data);
     }
+
     public function examresult() {
         $this->data = [
             'title' => 'Hasil Ujian',
-            'user' => $this->userModel->getUser(),
-            'nama' => $this->userModel->getUser()
+            'user' => $this->userModel->getUser()
         ];
         $this->data['get'] = $this->userModel->getUser();
-  
-        
-       
-
         return view('admin/hasilujian', $this->data);
     }
 
