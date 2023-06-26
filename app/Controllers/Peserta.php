@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\DurasiModel;
 use App\Models\JawabanModel;
 use App\Models\UserModel;
 use App\Models\SoalModel;
@@ -11,12 +12,14 @@ class peserta extends BaseController
     protected $userModel;
     protected $soalModel;
     protected $jawabanModel;
+    protected $durasimodel;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->soalModel = new SoalModel();
         $this->jawabanModel = new JawabanModel();
+        $this->durasimodel = new DurasiModel();
     }
 
     public function login()
@@ -102,7 +105,7 @@ class peserta extends BaseController
                 'inputtoken'=>[
                     'rules'=>'required',
                     'errors'=>[
-                        'required' => '{field} tidak boleh kosong'
+                        'required' => 'Token tidak boleh kosong'
                     ]
                 ]
             ])){
@@ -116,6 +119,7 @@ class peserta extends BaseController
                 $this->userModel->save([
                     'id' => session()->get('account')['id'],
                     'status' => 'ujian',
+                    'waktu_mulai' => date('Y-m-d H:i:s')
                 ]);
 
                 session()->set('account', $this->userModel->getUser(session()->get('account')['id']));
@@ -124,7 +128,6 @@ class peserta extends BaseController
                 return redirect()->to(base_url('/shuffle'));
             }
         } elseif (session()->get('account')['status'] == 'ujian'){
-
             return redirect()->to(base_url('/loadSoal/1'));
         }
     }
@@ -161,7 +164,8 @@ class peserta extends BaseController
                 'title' => 'Ujian IMEV',
                 'soal' => session()->get('soal')[$indexFinal],
                 'jmlSoal' => session()->get('soal'),
-                'akhir' => $indexAkhir
+                'akhir' => $indexAkhir,
+                'waktu' => $this->durasimodel->findAll(),
             ];
 
             return view('peserta/soal', $data);
@@ -219,6 +223,7 @@ class peserta extends BaseController
         $this->userModel->save([
             'id' => session()->get('account')['id'],
             'status' => 'selesai',
+            'waktu_selesai' => date('Y-m-d H:i:s')
         ]);
         session()->set('account', $this->userModel->getUser(session()->get('account')['id']));
 

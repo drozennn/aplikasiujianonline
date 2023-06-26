@@ -33,21 +33,5 @@
     </div>
     
 </body>
-<script>
-    const burger = document.querySelector("#soal");
-    const sidebar = document.querySelector("#sidebar");
-    const content = document.querySelector("#content");
-
-    burger.addEventListener("click", function(){
-        if(sidebar.classList.contains('-translate-x-full')){
-            sidebar.classList.remove('-translate-x-full')
-            sidebar.classList.add('translate-x-0')
-        }
-    })
-
-    content.addEventListener("click", function(){
-        sidebar.classList.remove('translate-x-0')
-        sidebar.classList.add('-translate-x-full')
-    })
-</script>
+<script src="/js/script.js"></script>
 </html>
