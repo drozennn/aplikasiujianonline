@@ -13,6 +13,10 @@
         ?>
     </nav>
     <div class="absolute bottom-0 p-2 w-full">
-        <a href="/logout" class="bg-red-700 py-1 hover:bg-red-800 text-center block text-white rounded-md">Log Out</a>
+        <?php if(session()->get('account')['nama'] == 'admin') : ?>
+            <a href="/admin/logout" class="bg-red-700 py-1 hover:bg-red-800 text-center block text-white rounded-md">Log Out</a>
+        <?php else : ?>
+            <a href="/logout" class="bg-red-700 py-1 hover:bg-red-800 text-center block text-white rounded-md">Log Out</a>
+        <?php endif ?>
     </div>
 </div>

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/src/style.css">
     <title>LOGIN</title>
 </head>
-<body style="background-image: url(/asset/back-login.jpg); background-size: cover; background-position: center;">
+<body style="background-image: url(/asset/welding-bg.jpg); background-size: cover; background-position: center;">
     <?php $error = session()->get('_ci_validation_errors'); ?>
     
     <?php if(session()->getFlashdata('alert-login')) :?>
@@ -19,24 +19,24 @@
     <?php endif ?>
 
     <div class="flex justify-center items-center h-screen ">
-        <div class="w-72 sm:w-80 shadow-xl p-3" style="background: rgba(150, 150, 150, .6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(7px);border: 1px solid rgba(255, 255, 255, 0.26);">
+        <div class="w-72 sm:w-80 shadow-xl p-2" style="background: rgba(150, 150, 150, .6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(7px);border: 1px solid rgba(255, 255, 255, 0.26);">
 
             <div class="flex justify-center  sm:mt-2">
-                <img src="/asset/icon-login.png" alt="" class="w-20">
+                <img src="/asset/icon.png" alt="" class="w-36">
             </div>
             <h2 class="text-white font-bold text-2xl sm:text-3xl text-center mt-2">IMEV 12</h2>
 
             <form action="/admin/auth" method="post">
                 <div class="px-3 mt-3">
-                    <input type="email" name="email" id="email" class="w-full drop-shadow-md rounded-md px-2 py-1 bg-slate-100 outline-none" placeholder="Masukan Email" value="<?= old('email') ?>" autocomplete="off">
+                    <input type="email" name="email" id="email" class="w-full drop-shadow-md rounded-md px-2 py-1 bg-slate-100 outline-none focus:outline-slate-300" placeholder="Masukan Email" value="<?= old('email') ?>" autocomplete="off">
                     <?php if(isset($error['email'])) :?>
                         <span class="text-white"><?= $error['email']; ?></span>
                     <?php endif ?>
-                    <input type="password" name="password" id="password" class="w-full drop-shadow-md rounded-md px-2 py-1 mt-4 bg-slate-100 outline-none" placeholder="Masukan Password" value="<?= old('password') ?>" autocomplete="off">
+                    <input type="password" name="password" id="password" class="w-full drop-shadow-md rounded-md px-2 py-1 mt-4 bg-slate-100 outline-none focus:outline-slate-300" placeholder="Masukan Password" value="<?= old('password') ?>" autocomplete="off">
                     <?php if(isset($error['password'])) :?>
                         <span class="text-white"><?= $error['password']; ?></span>
                     <?php endif ?>
-                    <button class="w-full text-white bg-green-500 rounded-md text-center mt-5 p-1 mb-1 hover:bg-green-700 transition">Log in Admin</button>
+                    <button class="w-full text-white bg-blue-500 rounded-md text-center mt-5 p-1 mb-1 hover:bg-blue-700 transition">Log in Admin</button>
                 </div>
             </form>
         </div>

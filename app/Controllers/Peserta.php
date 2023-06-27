@@ -20,6 +20,10 @@ class peserta extends BaseController
         $this->soalModel = new SoalModel();
         $this->jawabanModel = new JawabanModel();
         $this->durasimodel = new DurasiModel();
+
+        if(session()->get('account')){
+            session()->set('account', $this->userModel->getUser(session()->get('account')['id']));
+        }
     }
 
     public function login()
@@ -84,11 +88,15 @@ class peserta extends BaseController
 
     public function ujian()
     {    
-
+        $now = strtotime(date('H:i:s'));
+        $open = strtotime($this->durasimodel->getData()[0]['mulai']);
         $data = [
             'title' => 'Daftar Ujian',
             'peserta' => $this->userModel->getUser(session()->get('account')['id']),
-            'soal' => $this->soalModel->getSoal()
+            'soal' => $this->soalModel->getSoal(),
+            'now' => $now,
+            'open' => $open,
+            'durasi' => $this->durasimodel->getData()
         ];
 
         return view('peserta/ujian', $data);
@@ -239,4 +247,5 @@ class peserta extends BaseController
 
         return view('peserta/hasilujian', $data);
     }
+
 }

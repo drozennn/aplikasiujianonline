@@ -31,19 +31,23 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // dashboard peserta
-$routes->get('/dashboard', 'Peserta::index');
-$routes->get('/ujian', 'Peserta::ujian');
-$routes->post('/soal', 'Peserta::token');
-$routes->get('/', 'Peserta::login');
+
+$routes->get('/', 'Peserta::login', ['filter' => 'dashboard']);
 $routes->post('/auth', 'Peserta::auth');
 $routes->get('/logout', 'Peserta::logout');
-$routes->get('/shuffle', 'Peserta::shuffle');
-$routes->get('/loadSoal/(:num)', 'Peserta::loadSoal/$1');
-$routes->post('/loadSoal/(:num)', 'Peserta::jawaban/$1');
-$routes->get('/confirm', 'Peserta::confirm');
-$routes->get('/saveJawaban', 'Peserta::save');
-$routes->get('/selesai', 'Peserta::selesai');
-$routes->get('/hasilujian', 'Peserta::hasilUjian');
+
+// $routes->group('', ['filter' => 'login'], function($routes) {
+    $routes->get('/dashboard', 'Peserta::index', ['filter' => 'login'] );
+    $routes->get('/ujian', 'Peserta::ujian', ['filter' => 'login']);
+    $routes->post('/soal', 'Peserta::token');
+    $routes->get('/shuffle', 'Peserta::shuffle');
+    $routes->get('/loadSoal/(:num)', 'Peserta::loadSoal/$1', ['filter' => 'kick']);
+    $routes->post('/loadSoal/(:num)', 'Peserta::jawaban/$1', ['filter' => 'kick']);
+    $routes->get('/confirm', 'Peserta::confirm', ['filter' => 'login']);
+    $routes->get('/saveJawaban', 'Peserta::save', ['filter' => 'login']);
+    $routes->get('/selesai', 'Peserta::selesai', ['filter' => 'login']);
+    $routes->get('/hasilujian', 'Peserta::hasilUjian', ['filter' => 'login']);
+// });
 
 
 

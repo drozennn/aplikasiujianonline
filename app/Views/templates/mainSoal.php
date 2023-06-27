@@ -12,7 +12,7 @@
     <title><?= $title ?></title>
 </head>
 
-<body>
+<body class="bg-[#F0edcc] min-h-screen">
     <?= $this->include('templates/navbar') ?>
 
         <!-- Hamburger Line -->

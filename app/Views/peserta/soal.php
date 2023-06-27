@@ -2,8 +2,8 @@
 <?= $this->section('content'); ?>
     
     <div class="md:flex py-2 relative">
-        <div class="md:w-3/4 p-4 md:relative md:border-r-2 md:h-screen">
-            <div class="bg-gray-200 p-3 mb-4 rounded-md">
+        <div class="md:w-3/4 p-4 md:relative md:border-r-2  md:h-screen">
+            <div class="bg-white p-3 mb-4 rounded-md">
                 <div class="flex justify-between items-center">
                     <h4 class="font-bold text-xl">Soal No. <?= $soal['urutan'] ?></h4>
                     <span class="countdown font-mono text-2xl font-bold" id="countdown">
@@ -16,14 +16,14 @@
                 <?php if(!$soal['gambar'] == '') :?>
                     <div class="flex justify-center items-center h-1/2">
                         <div class="w-full flex justify-center items-center overflow-hidden">
-                            <img src="/asset/test-image2.jpg" alt="Gambar" class="object-center">
+                            <img src="/asset/<?= $soal['gambar'] ?>" alt="Gambar" class="object-center">
                         </div>
                     </div>
                 <?php endif ?>
                 <p class="py-2"><?= $soal['soal'] ?></p>
             </div>
             <form action="/loadSoal/<?= $soal['urutan']?>" method="post">
-            <textarea name="jawaban" id="jawaban" rows="4" class="w-full px-4 py-2 border border-slate-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 " autofocus placeholder="Jawaban anda . . . ."><?= $soal['jawaban'] != null ? $soal['jawaban'] : '' ?></textarea>
+            <textarea name="jawaban" id="jawaban" rows="4" class="w-full px-4 py-2 border border-slate-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 selection:bg-green-500 selection:text-white" autofocus placeholder="Jawaban anda . . . ."><?= $soal['jawaban'] != null ? $soal['jawaban'] : '' ?></textarea>
                 <div class="flex justify-between p-3 ">
                     <div>
                         <input type="submit" name="button" id="previous" value="previous" class="btn btn-primary  <?= $soal['urutan'] == 1 ? 'hidden' : '' ?>">

@@ -9,7 +9,7 @@ if(session()->getFlashdata('loginsukses') == true) :?>
 <span class="capitalize font-medium"> <?= session()-> getFlashdata ('loginsukses') ?></span>
 </div>
 <?php endif ?>
-<div class="font-poppins text-lg p-2"style="border: 1px; border-color: red">
+<div class="font-poppins text-lg p-2">
   <h1 class="font-poppins text-3xl">Panduan Ujian</h1>
   <p class="mt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
     Fuga, cum dolorem, non tempore dolor asperiores velit molestiae ratione sapiente corrupti hic doloribus ea suscipit dolorum accusamus. 

@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\DashboardFilter;
+use App\Filters\KickFilter;
+use App\Filters\LoginFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -21,6 +24,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'login' => LoginFilter::class,
+        'dashboard' => DashboardFilter::class,
+        'kick' => KickFilter::class,
     ];
 
     /**

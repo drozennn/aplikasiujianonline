@@ -5,19 +5,17 @@ namespace App\Controllers;
 use App\Models\UserModel;
 class AdminController extends BaseController
 {
-    protected $userModel, $data, $model;
+    protected $userModel, $data;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
- 
-
     }
 
     public function login(){
         return view('admin/login');
     }
-    
+
     public function auth()
     {
         if (!$this->validate([
@@ -39,17 +37,16 @@ class AdminController extends BaseController
         
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password'); 
-        if ($email = 'admin@gmail.com' && $password = 'admin') {
+        if ($email == 'admin@gmail.com' && $password == 'admin') {
             $name= ['nama' => "admin"];    
             session()->set('account', $name);
             session()->setFlashdata('loginsukses', 'Selamat Datang Admin ');
 
             return redirect()->to(base_url('/admin/dashboard'));
         } else {
-           
-            return redirect()->to(base_url('/admin/login'));
+            session()->setFlashdata('alert-login', 'email atau password salah');
+            return redirect()->to(base_url('/admin'));
         }
-       
     }
 
     public function index() {

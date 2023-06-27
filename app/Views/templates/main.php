@@ -12,7 +12,7 @@
     <title><?= $title ?></title>
 </head>
 
-<body>
+<body class="bg-[#F0edcc] min-h-screen ">
     <?= $this->include('templates/navbar') ?>
     <!-- Hamburger Line -->
     <div id="btnNav" class="w-10 h-10 z-20 shadow-md backdrop-blur-lg bg-slate-200 opacity-50 fixed top-1/2 flex items-center justify-center">
@@ -28,7 +28,7 @@
         <?= $this->include('templates/sidebar') ?>
         <div class="flex-1" id="content">
             <!-- Content -->
-            <div class="p-4 pt-20 sm:ml-64 h-screen">
+            <div class="p-4 pt-20 sm:ml-64 h-full">
                 <?= $this->renderSection('content') ?>
             </div>
         </div>

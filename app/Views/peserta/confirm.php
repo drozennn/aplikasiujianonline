@@ -1,7 +1,7 @@
 <?= $this->extend('templates/mainSoal'); ?>
 <?= $this->section('content'); ?>
 <div class="p-4">
-    <h1 class="text-center my-3 text-xl sm:text-2xl lg:text-3xl font-bold">Submit dan Finish</h1>
+    <h1 class="text-center my-3 text-xl sm:text-2xl lg:text-3xl font-bold font-poppins">Submit dan Finish</h1>
     <div class="w-full h-0.5 bg-slate-300 rounded-sm my-3"></div>
     <div class="w-full h-screen px-2 md:px-5">
         <?php foreach($data as $row) :?>

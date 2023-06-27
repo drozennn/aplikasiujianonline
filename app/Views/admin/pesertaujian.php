@@ -1,17 +1,21 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
-<div class="p-3">
-  <h1 class="text-center text-2xl font-bold tracking-wide mb-2">Daftar Peserta</h1>
+<div class="p-3 bg-[#F0edcc]">
+  <h1 class="font-bold text-black text-2xl mb-2 font-poppins">Daftar Peserta</h1>
+  
+  
+  <div class="w-full h-0.5 bg-slate-300 rounded-sm my-4"></div>
+
 
   <div class="px-4 py-3 lg:hidden">
     <div class="w-3 h-3 bg-gray-200 border-gray-400 border rounded-sm inline-block"></div>
-    <p class="inline-block">Belum Mulai</p>
+    <p class="inline-block font-poppins">Belum Mulai</p>
     <br class="md:hidden">
     <div class="w-3 h-3 bg-yellow-300 border-yellow-500 border rounded-sm inline-block"></div>
-    <p class="inline-block">Sedang Ujian</p>
+    <p class="inline-block font-poppins">Sedang Ujian</p>
     <br class="md:hidden">
     <div class="w-3 h-3 bg-emerald-300 border-emerald-500 border rounded-sm inline-block"></div>
-    <p class="inline-block">Selesai</p>
+    <p class="inline-block font-poppins">Selesai</p>
   </div>
 
 <!-- untuk mobile -->
@@ -20,7 +24,7 @@
     <div class="p-4 shadow-lg overflow-hidden rounded-md <?= $row['status'] == 'belum' ? 'bg-gray-200' : ''?> <?= $row['status'] == 'ujian' ? 'bg-yellow-300' : ''?> <?= $row['status'] == 'selesai' ? 'bg-emerald-300' : ''?>">
       <table>
         <tr>
-          <td class="p-1.5">Nama</td>
+          <td class="p-1.5">Nama</td> 
           <td class="p-1.5">:</td>
           <td class="p-1.5 text-lg"><b><?= $row['nama'] ?></b></td>
         </tr>
@@ -51,12 +55,14 @@
 
   <!-- untuk website -->
   <div class="overflow-x-auto hidden shadow-xl lg:block">
-        <table class="table table-zebra shadow-lg">
+        <table class="table shadow-lg">
           <!-- head -->
           <thead>
             <tr class="bg-emerald-500">
               <th></th>
               <th class="text-lg text-white text-center">Nama</th>
+              <th class="text-lg text-white text-center">NIM</th>
+              <th class="text-lg text-white text-center">Password</th>
               <th class="text-lg text-white text-center">Email</th>
               <th class="text-lg text-white text-center">Universitas</th>
               <th class="w-24 text-lg text-white text-center">Token</th>
@@ -66,9 +72,11 @@
           <tbody>
             <?php $no = 1; ?>
             <?php foreach ($get as $user) : ?>
-              <tr>
+              <tr class="odd:bg-slate-200 even:bg-slate-300">
                 <th><p class="text-lg text-black text-center"><?= $no ?></th>
                 <td><p class="text-lg text-black text-center"><?= $user['nama'] ?></td>
+                <td><p class="text-lg text-black text-center"><?= $user['nim'] ?></td>
+                <td><p class="text-lg text-black text-center"><?= $user['password'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['email'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['token'] ?></td>

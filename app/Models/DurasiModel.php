@@ -38,4 +38,8 @@ class DurasiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getData() {
+        return $this->findAll();
+    }
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/src/style.css">
     <title>LOGIN</title>
 </head>
-<body style="background-image: url(/asset/back-login.jpg); background-size: cover; background-position: center;">
+<body style="background-image: url(/asset/welding-bg.jpg); background-size: cover; background-position: center;">
     <?php $error = session()->get('_ci_validation_errors'); ?>
     
     <?php if(session()->getFlashdata('alert-login')) :?>
@@ -22,7 +22,7 @@
         <div class="w-72 sm:w-80 shadow-xl p-3" style="background: rgba(150, 150, 150, .6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(7px);border: 1px solid rgba(255, 255, 255, 0.26);">
 
             <div class="flex justify-center  sm:mt-2">
-                <img src="/asset/icon-login.png" alt="" class="w-20">
+                <img src="/asset/icon.png" alt="" class="w-36">
             </div>
             <h2 class="text-white font-bold text-2xl sm:text-3xl text-center mt-2">IMEV 12</h2>
 
