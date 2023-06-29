@@ -54,11 +54,18 @@ $routes->get('/logout', 'Peserta::logout');
 
 //dashboard admin
 $routes->get('/admin', 'AdminController::login');
+$routes->get('/admin/kontrol', 'AdminController::kontrol');
+$routes->get('/admin/kontrol/peserta', 'AdminController::control');
+$routes->get('/admin/kontrol/waktu', 'AdminController::waktu');
 $routes->post('/admin/auth', 'AdminController::auth');
 $routes->get('/admin/logout', 'AdminController::logout');
 $routes->get('/admin/dashboard', 'AdminController::index');
 $routes->get('/admin/pesertaujian', 'AdminController::examuser');
 $routes->get('/admin/hasilujian', 'AdminController::examresult');
+$routes->get('/admin/controlbelum/(:num)', 'AdminController::controlBelum/$1');
+$routes->get('/admin/controlselesai/(:num)', 'AdminController::controlSelesai/$1');
+$routes->post('/admin/setWaktu', 'AdminController::setWaktu');
+$routes->get('/admin/cetakSemua', 'AdminController::cetakSemua');
 
 
 /*

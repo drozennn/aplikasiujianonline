@@ -4,10 +4,10 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-black text-2xl font-poppins">Hasil Ujian Peserta</h1>
     <div>
-      <a href="#" class="btn btn-accent text-white">Cetak Semua</a>
+      <a href="/admin/cetakSemua" class="btn btn-accent text-white">Cetak Semua</a>
     </div>
   </div>
-  <div class="w-full h-0.5 bg-slate-300 rounded-sm my-4"></div>
+  <div class="w-full h-0.5 bg-black rounded-sm my-4"></div>
 
         <table class="table">
           <!-- head -->
@@ -25,7 +25,7 @@
             <?php $no = 1; ?>
             <?php foreach ($get as $user) : ?>
               <?php if($user['waktu_mulai'] != null && $user['waktu_selesai'] != null) {
-                  $status = $user['waktu_selesai'];
+                  $status = date('H:i:s',strtotime($user['waktu_selesai']));
                 } elseif ($user['waktu_mulai'] != null && $user['waktu_selesai'] == null){
                   $status = 'Sedang Mengerjakan';
                 } else{
@@ -36,7 +36,7 @@
                 <th><p class="text-lg text-black text-center"><?= $no ?></p></th>
                 <td><p class="text-lg text-black text-center capitalize"><?= $user['nama'] ?></p></td>
                 <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></p></td>
-                <td><p class="text-lg text-black text-center"><?= $user['waktu_mulai'] == null ? 'Belum Mulai' : $user['waktu_mulai'] ?></p></td>
+                <td><p class="text-lg text-black text-center"><?= $user['waktu_mulai'] == null ? 'Belum Mulai' : date('H:i:s', strtotime($user['waktu_mulai'])) ?></p></td>
                 <td><p class="text-lg text-black text-center"><?= $status ?></p></td>
                 <td class="flex items-center justify-center">
                   <a href="" class="btn btn-outline ">Cetak</a>

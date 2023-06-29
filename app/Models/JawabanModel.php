@@ -42,9 +42,15 @@ class JawabanModel extends Model
 
     public function getData($id = false) {
         if ($id == false){
+            $this->select('jawaban_peserta.*,master_soal.soal,master_user.nama');
+            $this->join('master_soal', 'master_soal.id = id_soal');
+            $this->join('master_user', 'master_user.id = id_user');
             return $this->findAll();
         }
-
+        
+        $this->select('jawaban_peserta.*,master_soal.soal,master_user.nama');
+        $this->join('master_soal', 'master_soal.id = id_soal');
+        $this->join('master_user', 'master_user.id = id_user');
         return $this->where(['id' => $id])->first();
     }
 
@@ -53,5 +59,14 @@ class JawabanModel extends Model
         $this->join('master_soal', 'master_soal.id = id_soal');
         $this->join('master_user', 'master_user.id = id_user');
         return $this->where(['id_user' => $id])->findAll();
+    }
+
+    public function getDataCetak() {
+        $this->select('jawaban_peserta.*, master_user.email, master_user.univ, master_user.nim, master_user.waktu_mulai, master_user.waktu_selesai');
+        $this->join('master_user', 'jawaban_peserta.id_user = master_user.id');
+        // $results = $query->get()->getResult();
+
+        return $this->findAll();
+
     }
 }

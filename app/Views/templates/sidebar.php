@@ -5,6 +5,7 @@
             echo '<a href="/admin/dashboard" class="block py-2 px-4 text-white hover:bg-gray-700 text-lg">Home</a>';
             echo '<a href="/admin/pesertaujian" class="block py-2 px-4 text-white hover:bg-gray-700 text-lg">Peserta Ujian</a>'; //admin
             echo '<a href="/admin/hasilujian" class="block py-2 px-4 text-white hover:bg-gray-700 text-lg">Hasil Ujian</a>';
+            echo '<a href="/admin/kontrol" class="block py-2 px-4 text-white hover:bg-gray-700 text-lg">Kontrol</a>';
         }else {
             echo '<a href="/dashboard" class="block py-2 px-4 text-white hover:bg-gray-700 text-lg">Home</a>';
             echo '<a href="/ujian" class="block py-2 px-4 text-white hover:bg-gray-700 text-lg">Ujian</a>'; // peserta

@@ -1,11 +1,16 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
 <div class="p-3 bg-[#F0edcc]">
-  <h1 class="font-bold text-black text-2xl mb-2 font-poppins">Daftar Peserta</h1>
-  
-  
-  <div class="w-full h-0.5 bg-black rounded-sm my-4"></div>
 
+<?php if(session()->getFlashdata('editStatus')) :?>
+        <div class="alert alert-success mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span><?= session()->getFlashdata('editStatus') ?></span>
+        </div>
+<?php endif ; ?>
+
+  <h1 class="font-bold text-black text-2xl mb-2 font-poppins">Kontrol Peserta</h1>
+  <div class="w-full h-0.5 bg-black rounded-sm my-4"></div>
 
   <div class="px-4 py-3 lg:hidden">
     <div class="w-3 h-3 bg-gray-200 border-gray-400 border rounded-sm inline-block"></div>
@@ -26,7 +31,7 @@
         <tr>
           <td class="p-1.5">Nama</td> 
           <td class="p-1.5">:</td>
-          <td class="p-1.5 text-lg"><b><?= $row['nama'] ?></b></td>
+          <td class="p-1.5 text-lg capitalize"><b><?= $row['nama'] ?></b></td>
         </tr>
         <tr>
           <td class="p-1.5">Email</td>
@@ -42,9 +47,18 @@
           <td class="p-1.5">Status</td>
           <td class="p-1.5">:</td>
           <td class="p-1.5">
-            <span class="p-1 px-2 rounded-lg text-white uppercase tracking-wider text-sm <?= $row['status'] == 'belum' ? 'bg-gray-700' : ''?> <?= $row['status'] == 'ujian' ? 'bg-amber-800' : ''?> <?= $row['status'] == 'selesai' ? 'bg-green-700' : ''?>">
-              <?= $row['status'] ?>
-            </span>
+            <div class="flex justify-start items-center gap-3">
+                <span class="p-1 px-2 rounded-lg text-white uppercase tracking-wider text-sm <?= $row['status'] == 'belum' ? 'bg-gray-700' : ''?> <?= $row['status'] == 'ujian' ? 'bg-amber-800' : ''?> <?= $row['status'] == 'selesai' ? 'bg-green-700' : ''?>">
+                  <?= $row['status'] ?>
+                </span>
+                <div class="dropdown dropdown-top ">
+                    <label tabindex="0" class="btn m-1">Edit</label>
+                    <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-24">
+                        <li><a href="/admin/controlbelum/<?= $row['id'] ?>">Belum</a></li>
+                        <li><a href="/admin/controlselesai/<?= $row['id'] ?>">Selesai</a></li>
+                    </ul>
+                </div>
+            </div>
           </td>
         </tr>
       </table>
@@ -66,7 +80,7 @@
               <th class="text-lg text-white text-center">Email</th>
               <th class="text-lg text-white text-center">Universitas</th>
               <th class="w-24 text-lg text-white text-center">Token</th>
-              <th class="w-24 text-lg text-white text-center">Status</th>
+              <th class="text-lg text-white text-center">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -74,21 +88,30 @@
             <?php foreach ($get as $user) : ?>
               <tr class="odd:bg-slate-200 even:bg-slate-300">
                 <th><p class="text-lg text-black text-center"><?= $no ?></th>
-                <td><p class="text-lg text-black text-center"><?= $user['nama'] ?></td>
+                <td><p class="text-lg text-black text-center capitalize"><?= $user['nama'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['nim'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['password'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['email'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['token'] ?></td>
                 <td><p class="text-lg text-black text-center">
-                  <span class="p-1 px-2 rounded-lg text-white uppercase tracking-wider text-sm <?= $user['status'] == 'belum' ? 'bg-gray-700' : ''?> <?= $user['status'] == 'ujian' ? 'bg-yellow-500' : ''?> <?= $user['status'] == 'selesai' ? 'bg-green-700' : ''?>">
-                    <?= $user['status'] ?>
-                  </span>
+                    <div class="flex gap-2">
+                        <span class="p-1 px-2 rounded-lg text-white uppercase tracking-wider text-sm text-center self-center <?= $user['status'] == 'belum' ? 'bg-gray-700' : ''?> <?= $user['status'] == 'ujian' ? 'bg-yellow-500' : ''?> <?= $user['status'] == 'selesai' ? 'bg-green-700' : ''?>">
+                            <?= $user['status'] ?>
+                        </span>
+                        <div class="dropdown dropdown-bottom dropdown-end">
+                            <label tabindex="0" class="btn m-1">Edit</label>
+                            <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-36">
+                                <li><a href="/admin/controlbelum/<?= $user['id'] ?>">Belum</a></li>
+                                <li><a href="/admin/controlselesai/<?= $user['id'] ?>">Selesai</a></li>
+                            </ul>
+                            </div>
+                    </div>
                 </td>
-              </tr>
-              <?php $no++ ?>
+                </tr>
+                <?php $no++ ?>
             <?php endforeach ?>
-          </tbody>
+            </tbody>
         </table>
     </div>
 </div>
