@@ -66,6 +66,7 @@ $routes->get('/admin/controlbelum/(:num)', 'AdminController::controlBelum/$1');
 $routes->get('/admin/controlselesai/(:num)', 'AdminController::controlSelesai/$1');
 $routes->post('/admin/setWaktu', 'AdminController::setWaktu');
 $routes->get('/admin/cetakSemua', 'AdminController::cetakSemua');
+$routes->get('/admin/cetak/(:any)', 'AdminController::cetak/$1');
 
 
 /*

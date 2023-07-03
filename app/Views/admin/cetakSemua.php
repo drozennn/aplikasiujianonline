@@ -132,15 +132,21 @@
     
 </head>
 <body>
-    <?php 
-        $waktu_mulai = strtotime($user[0]['waktu_mulai']);
-        $waktu_selesai = strtotime($user[0]['waktu_selesai']);
-        $selisih = $waktu_selesai - $waktu_mulai;
-        $jam = floor($selisih / 3600);
-        $sisa = $selisih % 3600;
-        $menit = floor($sisa / 60);
-        $detik = $sisa % 60;
-    ?>
+    <div class="page-number">
+        <p></p>
+    </div>
+    <?php $counter = 1 ?>
+    <?php foreach($user as $data) : ?>
+        <?php 
+            $waktu_mulai = strtotime($data['waktu_mulai']);
+            $waktu_selesai = strtotime($data['waktu_selesai']);
+            $selisih = $waktu_selesai - $waktu_mulai;
+            $jam = floor($selisih / 3600);
+            $sisa = $selisih % 3600;
+            $menit = floor($sisa / 60);
+            $detik = $sisa % 60;
+        ?>
+
         <header>
             <h1>IMEV 12</h1>
             <h4>Invention Of Mechanical Engineering Venture</h4>
@@ -149,22 +155,22 @@
                     <tr>
                         <td>Nama</td>
                         <td>:</td>
-                        <td><?= ucwords($user[0]['nama']) ?></td>
+                        <td><?= ucwords($data['nama']) ?></td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td>:</td>
-                        <td><?= $user[0]['email'] ?></td>
+                        <td><?= $data['email'] ?></td>
                     </tr>
                     <tr>
                         <td>NIM</td>
                         <td>:</td>
-                        <td><?= $user[0]['nim'] ?></td>
+                        <td><?= $data['nim'] ?></td>
                     </tr>
                     <tr>
                         <td>Universitas</td>
                         <td>:</td>
-                        <td><?= strtoupper($user[0]['univ']) ?></td>
+                        <td><?= strtoupper($data['univ']) ?></td>
                     </tr>
                 </table>
                 <table class="table-right">
@@ -176,12 +182,12 @@
                     <tr>
                         <td>Waktu Mulai</td>
                         <td>:</td>
-                        <td><?= date('j M Y H:i:s', strtotime($user[0]['waktu_mulai'])) ?></td>
+                        <td><?= date('j M Y H:i:s', strtotime($data['waktu_mulai'])) ?></td>
                     </tr>
                     <tr>
                         <td>Waktu Selesai</td>
                         <td>:</td>
-                        <td><?= date('j M Y H:i:s', strtotime($user[0]['waktu_selesai'])) ?></td>
+                        <td><?= date('j M Y H:i:s', strtotime($data['waktu_selesai'])) ?></td>
                     </tr>
                     <tr>
                         <td>Lama Pengerjaan</td>
@@ -197,6 +203,7 @@
         <main>
             <?php $i = 1 ?>
             <?php foreach ($soalJawaban as $row) : ?>
+                <?php if($data['nama'] == $row['nama']) : ?>
                 <div class="container-soal">    
                     <p class="judul-soal">Soal <?= $i ?></p>
                     <div class="soal">
@@ -207,7 +214,15 @@
                     </div>
                 </div>
                 <?php $i++ ?>
+                <?php endif ?>
             <?php endforeach ?>
         </main>
+        <?php if (!count($user) == $counter) :?>
+            
+        <?php else: ?>
+            <div class="page-break"></div>
+        <?php endif ?>
+        <?php $counter++ ?>
+    <?php endforeach ?>
 </body>
 </html>

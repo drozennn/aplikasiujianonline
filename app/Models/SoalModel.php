@@ -13,7 +13,7 @@ class SoalModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['soal', 'jawaban_benar', 'gambar'];
+    protected $allowedFields    = ['soal', 'jawaban_benar', 'kategori'];
 
     // Dates
     protected $useTimestamps = false;
@@ -45,5 +45,14 @@ class SoalModel extends Model
         }
         
         return $this->where(['id' => $id])->first();
+    }
+
+    public function getSoalJawaban($nama){
+        
+        $this->select('master_soal.id, master_soal.soal, master_soal.kategori, jawaban_peserta.jawaban, master_user.nama');
+        $this->join('jawaban_peserta', 'master_soal.id = jawaban_peserta.id_soal', 'left');
+        $this->join('master_user', 'jawaban_peserta.id_user = master_user.id', 'left');
+        
+        return $this->where(['master_user.nama' => $nama])->findAll();
     }
 }

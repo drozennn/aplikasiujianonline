@@ -7,6 +7,8 @@ use App\Models\JawabanModel;
 use App\Models\SoalModel;
 use App\Models\UserModel;
 use Dompdf\Dompdf;
+use PDO;
+
 class AdminController extends BaseController
 {
     protected $userModel, $data;
@@ -174,38 +176,81 @@ class AdminController extends BaseController
         return redirect()->to(base_url('/admin/kontrol/waktu'));
     }
 
-    public function cetakSemua() {
+    // public function cetakSemua() {
 
-        $user = $this->userModel->getUser();
+    //     $user = $this->userModel->getUserSelesai();
+    //     $soal = $this->soalModel->findAll();
+    //     $array = [];
+    //     foreach($user as $row){
+    //         $jawaban = $this->jawabanModel->getDataCetak($row['id']);
+
+    //         foreach($jawaban as $data){
+    //             $array[] = [
+    //                 'idUser' => $data['id_user'],
+    //                 'soal' => $data['soal'],
+    //                 'jawaban' => $data['jawaban'],
+    //             ];
+    //         }
+    //     }
+
+    //     $data = [
+    //         'title' => 'cetak',
+    //         'user' => $user,
+    //         'soalJawaban' => $array,
+    //         'jmlSoal' => count($soal)
+
+    //     ];
+
+    //     $dompdf = new Dompdf();
+    //     $dompdf->loadHtml(view('admin/cetak', $data));
+    //     $dompdf->setPaper('A4', 'potrait');
+    //     $dompdf->render();
+    //     $dompdf->stream('Laporan Penilaian', ['Attachment' => 0]);
+    // }
+
+    public function cetakSemua() {
+        $user = $this->userModel->getUserSelesai();
         $soal = $this->soalModel->findAll();
-        $arrayUser = [];
+        $array = [];
         foreach($user as $row){
-            foreach($soal as $data){
-                $jawaban = $this->jawabanModel->getDataByName($row['id']);
-                foreach($jawaban as $jwb)  {
-                    $arrayUser = [
-                        'data' => $jwb
-                    ];
-                }
+            $jawaban = $this->soalModel->getSoalJawaban($row['nama']);
+            foreach($jawaban as $data){
+                $array[] =[
+                    'nama' => $data['nama'],
+                    'soal' => $data['soal'],
+                    'jawaban' => $data['jawaban'],
+                ];
             }
-        };
-        // dd($arrayUser);
-    
+        }
         $data = [
-            'title' => 'Cetak',
-            'user' => $this->userModel->getUser(),
-            'soalJawaban' => $this->jawabanModel->getDataByName(3),
-            'jmlSoal' => count($this->soalModel->findAll()),
-            // 'testCetak' => $this->jawabanModel->getDataCetak()
+            'title' => 'cetak',
+            'user' => $user,
+            'soalJawaban' => $array,
+            'jmlSoal' => count($soal)
+
+        ];
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(view('admin/cetakSemua', $data));
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('Laporan Penilaian', ['Attachment' => 0]);
+    }
+
+    public function cetak($nama) {
+        $soalJawaban = $this->soalModel->getSoalJawaban($nama);
+        $user = $this->userModel->getUserByName($nama);
+        $data = [
+            'title' => 'cetak',
+            'user' => $user,
+            'soalJawaban' => $soalJawaban,
+            'jmlSoal' => count($this->soalModel->findAll())
         ];
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml(view('admin/cetak', $data));
         $dompdf->setPaper('A4', 'potrait');
         $dompdf->render();
-        $dompdf->stream('Laporan Penilaian', ['Attachment' => 0]);
-
-
-        // return view('admin/cetak', $data);
+        $dompdf->stream(strtoupper($nama) . '_'. strtoupper($user[0]['univ']) .'_IMEV12', ['Attachment' => 0]);
     }
 }

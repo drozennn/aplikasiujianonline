@@ -147,7 +147,7 @@ class peserta extends BaseController
             $array[] = [
                 'id' => $data['id'],
                 'soal' => $data['soal'],
-                'gambar' => $data['gambar'],
+                'kategori' => $data['kategori'],
                 'jawaban' => null
             ];
         }

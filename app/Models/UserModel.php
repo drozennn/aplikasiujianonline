@@ -47,7 +47,15 @@ class UserModel extends Model
         return $this->where(['id' => $id])->first();
     }
 
+    public function getUserSelesai($id = false) {
+        return $this->where(['status' => 'selesai'])->findAll();
+    }
+
     public function getEmail($email) {
         return $this->where(['email' => $email])->first();
+    }
+
+    public function getUserByName($nama) {
+        return $this->where(['nama' => $nama])->findAll();
     }
 }

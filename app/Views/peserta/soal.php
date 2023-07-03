@@ -1,25 +1,18 @@
 <?= $this->extend('templates/mainSoal'); ?>
 <?= $this->section('content'); ?>
-    
     <div class="md:flex py-2 relative">
         <div class="md:w-3/4 p-4 md:relative md:border-r-2  md:h-screen">
             <div class="bg-white p-3 mb-4 rounded-md">
                 <div class="flex justify-between items-center">
                     <h4 class="font-bold text-xl">Soal No. <?= $soal['urutan'] ?></h4>
+                    <h5 class="font-medium text-lg uppercase">Materi : <?= $soal['kategori'] ?></h5>
                     <span class="countdown font-mono text-2xl font-bold" id="countdown">
                         <span style="--value:0;"></span>:
                         <span style="--value:0;"></span>:
                         <span style="--value:0;"></span>
                     </span>
                 </div>
-
-                <?php if(!$soal['gambar'] == '') :?>
-                    <div class="flex justify-center items-center h-1/2">
-                        <div class="w-full flex justify-center items-center overflow-hidden">
-                            <img src="/asset/<?= $soal['gambar'] ?>" alt="Gambar" class="object-center">
-                        </div>
-                    </div>
-                <?php endif ?>
+                
                 <p class="py-2"><?= $soal['soal'] ?></p>
             </div>
             <form action="/loadSoal/<?= $soal['urutan']?>" method="post">

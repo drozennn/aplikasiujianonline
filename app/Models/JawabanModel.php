@@ -61,12 +61,13 @@ class JawabanModel extends Model
         return $this->where(['id_user' => $id])->findAll();
     }
 
-    public function getDataCetak() {
-        $this->select('jawaban_peserta.*, master_user.email, master_user.univ, master_user.nim, master_user.waktu_mulai, master_user.waktu_selesai');
+    public function getDataCetak($id) {
+        $this->select('jawaban_peserta.*, master_user.nama, master_user.email, master_user.univ, master_user.nim, master_user.waktu_mulai, master_user.waktu_selesai, master_soal.soal');
         $this->join('master_user', 'jawaban_peserta.id_user = master_user.id');
-        // $results = $query->get()->getResult();
+        $this->join('master_soal', 'jawaban_peserta.id_soal = master_soal.id');
 
-        return $this->findAll();
+        return $this->where(['id_user' => $id])->findAll();
+
 
     }
 }
