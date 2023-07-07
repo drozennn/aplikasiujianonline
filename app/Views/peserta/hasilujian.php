@@ -1,6 +1,6 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
-<div class="p-3">
+<div class="p-3 text-black font-poppins">
     <?php if(session()->get('account')['status'] != 'belum' && session()->get('account')['status'] != 'ujian'): ?>
         <h1 class="text-2xl lg:text-3xl text-black font-bold font-poppins">Review Ujian</h1>
         <div class="w-full h-0.5 bg-black rounded-sm my-4"></div>

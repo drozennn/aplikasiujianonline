@@ -37,13 +37,13 @@ class peserta extends BaseController
             'email' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} tidak boleh kosong',
+                    'required' => 'E-mail tidak boleh kosong',
                 ]
             ],
             'password' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} tidak boleh kosong',
+                    'required' => 'Password tidak boleh kosong',
                 ]
             ]
         ])) {
@@ -191,7 +191,7 @@ class peserta extends BaseController
         $array[$idUrutan-1]['jawaban'] = $testArr['jawaban'];
         session()->set('soal', $array);
 
-        if($testArr['button'] == 'next'){
+        if($testArr['button'] == 'simpan jawaban'){
             if($posisi == $jmlIndex){
                 return redirect()->to(base_url('/confirm'));
             }
@@ -205,26 +205,39 @@ class peserta extends BaseController
     }
 
     public function confirm() {
-        $data = [
-            'title' => 'Finish',
-            'data' => session()->get('soal')
-        ];
+        
 
-        return view('peserta/confirm', $data);
+        if (session()->get('account')['status'] == "selesai"){
+            $data = [
+                'title' => 'Dashboard',
+            ];
+            return view('peserta/dashboard', $data );
+        }else{
+            $data = [
+                'title' => 'Finish',
+                'data' => session()->get('soal')
+            ];
+            return view('peserta/confirm', $data);
+        }
     }
 
+
     public function save() {
-        $isi = session()->get('soal');
+        if(session()->get('account')['status'] != "selesai"){
+            
+            $isi = session()->get('soal');
 
-        foreach($isi as $row){
-            $this->jawabanModel->save([
-                'jawaban' => $row['jawaban'],
-                'id_soal' => $row['id'],
-                'id_user' => session()->get('account')['id']
-            ]);
+            foreach($isi as $row){
+                $this->jawabanModel->save([
+                    'jawaban' => $row['jawaban'],
+                    'id_soal' => $row['id'],
+                    'id_user' => session()->get('account')['id']
+                ]);
+            }
+    
+            return redirect()->to(base_url('/selesai'));
         }
-
-        return redirect()->to(base_url('/selesai'));
+        return redirect()->to(base_url('/dashboard'));
     }
     
     public function selesai() {

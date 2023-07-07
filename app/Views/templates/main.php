@@ -28,7 +28,7 @@
         <?= $this->include('templates/sidebar') ?>
         <div class="flex-1" id="content">
             <!-- Content -->
-            <div class="p-4 pt-20 sm:ml-64 h-screen">
+            <div class="p-4 pt-20 sm:ml-64 min-h-screen">
                 <?= $this->renderSection('content') ?>
             </div>
         </div>

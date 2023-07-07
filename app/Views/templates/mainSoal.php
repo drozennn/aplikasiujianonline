@@ -28,7 +28,7 @@
     </div> -->
 
 
-    <div class="pt-16 h-screen" id="content">
+    <div class="pt-16 min-h-screen" id="content">
         <?= $this->renderSection('content') ?>
     </div>
     

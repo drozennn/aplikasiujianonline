@@ -1,6 +1,6 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
-<div class="overflow-x-auto p-4">
+<div class="overflow-x-auto p-4 text-black font-poppins">
     <?php $error = session()->get('_ci_validation_errors'); ?>
 
     <?php if(session()->getFlashdata('token-false')) :?>

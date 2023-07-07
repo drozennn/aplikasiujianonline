@@ -19,7 +19,13 @@
     <?php endif ?>
 
     <div class="flex justify-center items-center h-screen ">
-        <div class="w-72 sm:w-80 shadow-xl p-2" style="background: rgba(150, 150, 150, .6); border-radius: 16px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(7px);border: 1px solid rgba(255, 255, 255, 0.26);">
+        <div class="col-lg-4 p-5" style="
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);">
 
             <div class="flex justify-center  sm:mt-2">
                 <img src="/asset/icon.png" alt="" class="w-36">
@@ -42,4 +48,7 @@
         </div>
     </div>
 </body>
+<footerA>
+    
+</footer>
 </html>

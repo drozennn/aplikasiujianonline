@@ -1,6 +1,6 @@
 <?= $this->extend('templates/main'); ?>
 <?= $this->section('content'); ?>
-<div class="overflow-x-auto">
+<div class="overflow-x-auto text-black font-poppins">
 <?php 
 if(session()->getFlashdata('loginsukses') == true) :?>
 
