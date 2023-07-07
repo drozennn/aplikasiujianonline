@@ -48,7 +48,4 @@
         </div>
     </div>
 </body>
-<footerA>
-    
-</footer>
 </html>

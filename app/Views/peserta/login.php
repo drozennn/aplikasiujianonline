@@ -47,5 +47,14 @@
             </form>
         </div>
     </div>
+    <footer class="footer footer-center p-4 bg-slate-300 text-base-content">
+    <p class="text-black">Sponsored by:</p>
+        <div class="flex justify-center -mt-6">
+            <img width="8%" src="asset/sponsor1.png">
+            <img width="8%" src="asset/sponsor2.png">
+            <img width="8%" src="asset/sponsor3.png">
+            <img width="8%" src="asset/sponsor4.png">
+         </div>
+    </footer>
 </body>
 </html>
