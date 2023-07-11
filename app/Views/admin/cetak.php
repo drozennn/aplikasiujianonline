@@ -203,7 +203,7 @@
                         <p class="" ><?= $row['soal'] ?></p>
                         <br>
                         <p>Jawaban : </p>
-                        <pre ><i><?= $row['jawaban'] ?></i></pre>
+                        <p><i><?= $row['jawaban'] ?></i></p>
                     </div>
                 </div>
                 <?php $i++ ?>

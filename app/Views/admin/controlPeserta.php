@@ -56,6 +56,7 @@
                     <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-24">
                         <li><a href="/admin/controlbelum/<?= $row['id'] ?>">Belum</a></li>
                         <li><a href="/admin/controlselesai/<?= $row['id'] ?>">Selesai</a></li>
+                        <li><a href="/admin/loggedOut/<?= $row['id'] ?>">Logged Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -106,7 +107,7 @@
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-36">
                                 <li><a href="/admin/controlbelum/<?= $user['id'] ?>">Belum</a></li>
                                 <li><a href="/admin/controlselesai/<?= $user['id'] ?>">Selesai</a></li>
-                                <li><a href="/admin/loggedOut/<?= $user['id'] ?>">logged Out</a></li>
+                                <li><a href="/admin/loggedOut/<?= $user['id'] ?>">Logged Out</a></li>
                             </ul>
                             </div>
                     </div>
