@@ -13,7 +13,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'nim', 'univ', 'email', 'password', 'token', 'status', 'waktu_mulai', 'waktu_selesai'];
+    protected $allowedFields    = ['nama', 'nim', 'univ', 'email', 'password', 'token', 'status', 'waktu_mulai', 'waktu_selesai', 'login'];
 
     // Dates
     protected $useTimestamps = true;
@@ -57,5 +57,16 @@ class UserModel extends Model
 
     public function getUserByName($nama) {
         return $this->where(['nama' => $nama])->findAll();
+    }
+
+    public function getBelum(){
+        return $this->where(['status' => 'belum'])->findAll();
+    }
+    
+    public function getUjian(){
+        return $this->where(['status' => 'ujian'])->findAll();
+    }
+    public function getSelesai(){
+        return $this->where(['status' => 'selesai'])->findAll();
     }
 }
