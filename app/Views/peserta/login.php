@@ -18,8 +18,8 @@
         </div>
     <?php endif ?>
 
-    <div class="flex justify-center items-center h-screen ">
-        <div class="col-lg-4 p-5" style="
+    <div class="flex justify-center items-center h-screen">
+        <div class="w-72 sm:w-80 md:w-[550px] shadow-xl p-3" style="
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -27,7 +27,7 @@
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);">
 
-            <div class="flex justify-center  sm:mt-2">
+            <div class="flex justify-center mt-1  sm:mt-2">
                 <img src="/asset/icon.png" alt="" class="w-36">
             </div>
             <h2 class="text-white font-bold text-2xl sm:text-3xl text-center mt-2">IMEV 12</h2>
@@ -47,14 +47,5 @@
             </form>
         </div>
     </div>
-    <footer class="footer footer-center p-4 bg-slate-300 text-base-content">
-    <p class="text-black">Sponsored by:</p>
-        <div class="flex justify-center -mt-6">
-            <img width="8%" src="asset/sponsor1.png">
-            <img width="8%" src="asset/sponsor2.png">
-            <img width="8%" src="asset/sponsor3.png">
-            <img width="8%" src="asset/sponsor4.png">
-         </div>
-    </footer>
 </body>
 </html>

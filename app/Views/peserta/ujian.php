@@ -29,12 +29,22 @@
         <p class="font-poppins">Jumlah Soal : <?= count($soal) ; ?></p>
         <p class="font-poppins mb-2">Anda memiliki 1 kesempatan untuk mengerjakan ujian ini.</p>
         
-        
+        <?php 
+        if (!$now >= $open) {
+            $placeholder = 'Ujian belum dimulai';
+        } else{
+            if($now > $close){
+                $placeholder = 'Ujian telah ditutup';
+            }else{
+                $placeholder = 'Masukan token disini';
+            }
+        }
+        ?>
         
         <label for="inputtoken" class="font-poppins text-slate-400 mb-1">Token</p>
         <form method="post" action="/soal" class="md:flex md:items-center">
-            <input name="inputtoken" id="inputtoken" type="text" placeholder="<?= $now >= $open ? 'Masukkan token disini' : 'Ujian Belum Dimulai' ?>  " class="input input-bordered input-primary w-full max-w-xs text-black disabled:border-black disabled:border-2 disabled:bg-gray-500 disabled:placeholder:text-slate-200" <?= $now >= $open ? '' : 'disabled' ?>/>
-            <button onclick="" class="btn btn-success mt-2 justify-center md:inline md:ml-2 md:mt-0 disabled:bg-red-600 disabled:text-white" <?= $now >= $open ? '' : 'disabled' ?>>Mulai</button>
+            <input name="inputtoken" id="inputtoken" type="text" placeholder="<?= $placeholder ?>"  class="input input-bordered input-primary w-full max-w-xs text-black disabled:border-black disabled:border-2 disabled:bg-gray-500 disabled:placeholder:text-slate-200 bg-white" <?= $now >= $open ? '' : 'disabled' ?> <?= $now > $close ? 'disabled' : ''  ?> <?= $now > $close ? 'disabled:bg-gray-500' : ''  ?> />
+            <button onclick="" class="btn btn-success mt-2 justify-center md:inline md:ml-2 md:mt-0 disabled:bg-red-600 disabled:text-white" <?= $now >= $open ? '' : 'disabled' ?> <?= $now > $close ? 'disabled' : '' ?> >Mulai</button>
         </form>
         
     <?php elseif ($peserta['status'] == 'ujian') : ?>

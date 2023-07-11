@@ -90,12 +90,14 @@ class peserta extends BaseController
     {    
         $now = strtotime(date('H:i:s'));
         $open = strtotime($this->durasimodel->getData()[0]['mulai']);
+        $close = strtotime($this->durasimodel->getData()[0]['selesai']);
         $data = [
             'title' => 'Daftar Ujian',
             'peserta' => $this->userModel->getUser(session()->get('account')['id']),
             'soal' => $this->soalModel->getSoal(),
             'now' => $now,
             'open' => $open,
+            'close' => $close,
             'durasi' => $this->durasimodel->getData()
         ];
 
