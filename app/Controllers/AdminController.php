@@ -62,8 +62,16 @@ class AdminController extends BaseController
     }
 
     public function index() {
+        $jmlTotal = $this->userModel->findAll();
+        $jmlBelum = $this->userModel->getBelum();
+        $jmlUjian = $this->userModel->getUjian();
+        $jmlSelesai = $this->userModel->getSelesai();
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'total' => count($jmlTotal),
+            'belum' => count($jmlBelum),
+            'ujian' => count($jmlUjian),
+            'selesai' => count($jmlSelesai),
         ];
         return view('admin/dashboard', $data);
     }
@@ -252,5 +260,15 @@ class AdminController extends BaseController
         $dompdf->setPaper('A4', 'potrait');
         $dompdf->render();
         $dompdf->stream(strtoupper($nama) . '_'. strtoupper($user[0]['univ']) .'_IMEV12', ['Attachment' => 0]);
+    }
+
+    public function loggedOut($id) {
+        $this->userModel->save([
+            'id' => $id,
+            'login' => false
+        ]);
+        
+        session()->setFlashdata('editStatus', 'status berhasil diubah');
+        return redirect()->to(base_url('/admin/kontrol/peserta'));
     }
 }
