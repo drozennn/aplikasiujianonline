@@ -80,6 +80,7 @@
               <th class="text-lg text-white text-center">Email</th>
               <th class="text-lg text-white text-center">Universitas</th>
               <th class="w-24 text-lg text-white text-center">Token</th>
+              <th class="w-24 text-lg text-white text-center">Login</th>
               <th class="text-lg text-white text-center">Status</th>
             </tr>
           </thead>
@@ -94,6 +95,7 @@
                 <td><p class="text-lg text-black text-center"><?= $user['email'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['token'] ?></td>
+                <td><p class="text-lg text-black text-center"><?= $user['login'] == 0 ? 'NON' : 'AKTIF' ?></td>
                 <td><p class="text-lg text-black text-center">
                     <div class="flex gap-2">
                         <span class="p-1 px-2 rounded-lg text-white uppercase tracking-wider text-sm text-center self-center <?= $user['status'] == 'belum' ? 'bg-gray-700' : ''?> <?= $user['status'] == 'ujian' ? 'bg-yellow-500' : ''?> <?= $user['status'] == 'selesai' ? 'bg-green-700' : ''?>">
@@ -104,6 +106,7 @@
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-36">
                                 <li><a href="/admin/controlbelum/<?= $user['id'] ?>">Belum</a></li>
                                 <li><a href="/admin/controlselesai/<?= $user['id'] ?>">Selesai</a></li>
+                                <li><a href="/admin/loggedOut/<?= $user['id'] ?>">logged Out</a></li>
                             </ul>
                             </div>
                     </div>

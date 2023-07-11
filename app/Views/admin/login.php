@@ -19,7 +19,7 @@
     <?php endif ?>
 
     <div class="flex justify-center items-center h-screen ">
-        <div class="col-lg-4 p-5" style="
+        <div class="w-72 sm:w-80 md:w-[550px] shadow-xl p-3" style="
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

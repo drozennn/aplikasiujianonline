@@ -16,7 +16,7 @@
                 <p class="py-2"><?= $soal['soal'] ?></p>
             </div>
             <form action="/loadSoal/<?= $soal['urutan']?>" method="post">
-            <textarea name="jawaban" id="jawaban" rows="4" class="w-full px-4 py-2 border border-slate-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 selection:bg-green-500 selection:text-white" autofocus placeholder="Jawaban anda . . . ."><?= $soal['jawaban'] != null ? $soal['jawaban'] : '' ?></textarea>
+            <textarea name="jawaban" id="jawaban" rows="6" class="w-full px-4 py-2 border border-slate-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 selection:bg-green-500 selection:text-white bg-white" autofocus placeholder="Jawaban anda . . . ."><?= $soal['jawaban'] != null ? $soal['jawaban'] : '' ?></textarea>
                 <div class="flex justify-between p-1 sm:mt-2 ">
                     <div>
                         <input type="submit" name="button" id="previous" value="previous" class="btn btn-primary sm: justify-start  <?= $soal['urutan'] == 1 ? 'hidden' : '' ?>">

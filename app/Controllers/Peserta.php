@@ -58,10 +58,23 @@ class peserta extends BaseController
 
         if (!$account == false) {
             if ($password == $account['password']) {
-                $name = $this->userModel->getUser($account['id']);
-                session()->set('account', $account);
-                session()->setFlashData('loginsukses', 'Selamat Datang, '.$name['nama']);
-                return redirect()->to(base_url('/dashboard'));
+
+                if($account['login'] == 0){
+                    $this->userModel->save([
+                        'id' => $account['id'],
+                        'login' => true,
+                    ]);
+    
+                    $name = $this->userModel->getUser($account['id']);
+                    session()->set('account', $account);
+                    
+    
+                    session()->setFlashData('loginsukses', 'Selamat Datang, '.$name['nama']);
+                    return redirect()->to(base_url('/dashboard'));
+                } else{
+                    session()->setFlashData('alert-login', 'Perangkat lain sedang login');
+                    return redirect()->to(base_url('/'));
+                }
             } else {
                 session()->setFlashdata('alert-login', 'Password Salah');
                 return redirect()->to(base_url('/'))->withInput();
@@ -82,6 +95,11 @@ class peserta extends BaseController
 
     public function logout()
     {
+        $this->userModel->save([
+            'id' => session()->get('account')['id'],
+            'login' => 'false',
+        ]);
+
         session()->destroy();
         return redirect()->to(base_url('/'));
     }
@@ -90,12 +108,14 @@ class peserta extends BaseController
     {    
         $now = strtotime(date('H:i:s'));
         $open = strtotime($this->durasimodel->getData()[0]['mulai']);
+        $close = strtotime($this->durasimodel->getData()[0]['selesai']);
         $data = [
             'title' => 'Daftar Ujian',
             'peserta' => $this->userModel->getUser(session()->get('account')['id']),
             'soal' => $this->soalModel->getSoal(),
             'now' => $now,
             'open' => $open,
+            'close' => $close,
             'durasi' => $this->durasimodel->getData()
         ];
 
