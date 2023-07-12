@@ -72,7 +72,7 @@ class peserta extends BaseController
                     session()->setFlashData('loginsukses', 'Selamat Datang, '.$name['nama']);
                     return redirect()->to(base_url('/dashboard'));
                 } else{
-                    session()->setFlashData('alert-login', 'Perangkat lain sedang login');
+                    session()->setFlashData('alert-login', 'Anda hanya dapat login pada satu perangkat!');
                     return redirect()->to(base_url('/'));
                 }
             } else {

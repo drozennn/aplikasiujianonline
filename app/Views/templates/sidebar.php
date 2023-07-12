@@ -16,24 +16,24 @@
 
     <div class="absolute bottom-0 p-2 w-full">
         <div class="flex flex-wrap justify-around gap-3 my-3">
-            <a href="#">
+            <a href="https://laserindonesia.com/" target="__blank">
                 <div class="bg-slate-50 w-28 h-28 flex items-center justify-center rounded-md overflow-hidden transition duration-300 transform hover:scale-110">
-                    <img src="/asset/sponsor1.png" alt="sponsor1" width="85%">
+                    <img src="/asset/sponsor1.png" alt="sponsor1" title="Laser Indonesia" width="85%">
                 </div>
             </a>
-            <a href="#">
+            <a href="https://indonesianweldingassociation.org/" target="__blank">
                 <div class="bg-slate-50 w-28 h-28 flex items-center justify-center rounded-md overflow-hidden transition duration-300 transform hover:scale-110">
-                    <img src="/asset/sponsor2.png" alt="sponsor2" width="85%">
+                    <img src="/asset/sponsor2.png" alt="sponsor2" title="Indonesian Welding Association" width="85%">
                 </div>
             </a>
-            <a href="#">
+            <a href="https://www.hetratekno.com/" target="__blank">
                 <div class="bg-slate-50 w-28 h-28 flex items-center justify-center rounded-md overflow-hidden transition duration-300 transform hover:scale-110">
-                    <img src="/asset/sponsor3.png" alt="sponsor3" width="85%">
+                    <img src="/asset/sponsor3.png" alt="sponsor3" title="Hetra Tekno" width="85%">
                 </div>
             </a>
-            <a href="#">
+            <a href="https://www.ptc.com/en/products/creo" target="__blank">
                 <div class="bg-slate-50 w-28 h-28 flex items-center justify-center rounded-md overflow-hidden transition duration-300 transform hover:scale-110">
-                    <img src="/asset/sponsor4.png" alt="sponsor4" width="85%">
+                    <img src="/asset/sponsor4.png" alt="sponsor4" title="Creo" width="85%">
                 </div>
             </a>
         </div>
