@@ -174,14 +174,20 @@ class AdminController extends BaseController
         $mulaiConvert = date("Y-m-d H:i:s", strtotime($mulai));
         $selesaiConvert = date("Y-m-d H:i:s", strtotime($selesai));
 
-        $this->durasiModel->save([
-            'id' => 1,
-            'mulai' => $mulaiConvert,
-            'selesai' => $selesaiConvert
-        ]);
+        if(strtotime($selesaiConvert) <= strtotime($mulaiConvert)){
+            session()->setFlashdata('change-time-error', 'Waktu tidak valid');
+            return redirect()->to(base_url('/admin/kontrol/waktu'));
+        }else{
+            $this->durasiModel->save([
+                'id' => 1,
+                'mulai' => $mulaiConvert,
+                'selesai' => $selesaiConvert
+            ]);
 
-        session()->setFlashdata('change-time', 'Waktu Berhasil Diubah');
-        return redirect()->to(base_url('/admin/kontrol/waktu'));
+            session()->setFlashdata('change-time', 'Waktu Berhasil Diubah');
+            return redirect()->to(base_url('/admin/kontrol/waktu'));
+
+        };
     }
 
     // public function cetakSemua() {
