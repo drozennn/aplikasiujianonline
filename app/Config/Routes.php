@@ -69,7 +69,6 @@ $routes->get('/admin/cetakSemua', 'AdminController::cetakSemua');
 $routes->get('/admin/cetak/(:any)', 'AdminController::cetak/$1');
 $routes->get('/admin/loggedOut/(:any)', 'AdminController::loggedOut/$1');
 
-
 /*
  * --------------------------------------------------------------------
  * Additional Routing
