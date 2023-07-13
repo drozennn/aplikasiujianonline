@@ -11,19 +11,19 @@ if(session()->getFlashdata('loginsukses') == true) :?>
 <?php endif ?>
 
 <div class="flex justify-evenly items-center flex-wrap">
-    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-blue-600 rounded-md my-5 relative">
+    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-blue-600 rounded-md my-5 relative shadow-lg border-white">
         <h1 class="text-3xl lg:text-3xl font-medium mt-6 text-center text-white">Jumlah Peserta</h1>
         <h1 class="text-8xl lg:text-[180px] font-semibold text-center mt-5 text-white"><?= $total ?></h1>
     </div>
-    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-slate-600 rounded-md my-5 relative">
+    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-slate-600 rounded-md my-5 relative shadow-lg border-white">
         <h1 class="text-3xl lg:text-3xl font-medium mt-6 text-center text-white">Status Belum</h1>
         <h1 class="text-8xl lg:text-[180px] font-semibold text-center mt-5 text-white"><?= $belum ?></h1>
     </div>
-    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-yellow-400 rounded-md my-5 relative">
+    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-yellow-400 rounded-md my-5 relative shadow-lg border-white">
         <h1 class="text-3xl lg:text-3xl font-medium mt-6 text-center text-white">Status Ujian</h1>
         <h1 class="text-8xl lg:text-[180px] font-semibold text-center mt-5 text-white"><?= $ujian ?></h1>
     </div>
-    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-green-600 rounded-md my-5 relative">
+    <div class="w-60 h-60 lg:w-80 lg:h-80 bg-green-600 rounded-md my-5 relative shadow-lg border-white">
         <h1 class="text-3xl lg:text-3xl font-medium mt-6 text-center text-white">Status Selesai</h1>
         <h1 class="text-8xl lg:text-[180px] font-semibold text-center mt-5 text-white"><?= $selesai ?></h1>
     </div>

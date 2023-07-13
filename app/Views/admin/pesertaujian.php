@@ -66,6 +66,7 @@
               <th class="text-lg text-white text-center">Email</th>
               <th class="text-lg text-white text-center">Universitas</th>
               <th class="w-24 text-lg text-white text-center">Token</th>
+              <th class="w-24 text-lg text-white text-center">Login</th>
               <th class="w-24 text-lg text-white text-center">Status</th>
             </tr>
           </thead>
@@ -74,12 +75,13 @@
             <?php foreach ($get as $user) : ?>
               <tr class="odd:bg-slate-200 even:bg-slate-300">
                 <th><p class="text-lg text-black text-center"><?= $no ?></th>
-                <td><p class="text-lg text-black text-center"><?= $user['nama'] ?></td>
+                <td><p class="text-lg text-black text-center capitalize"><?= $user['nama'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['nim'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['password'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['email'] ?></td>
-                <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></td>
+                <td><p class="text-lg text-black text-center uppercase"><?= $user['univ'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['token'] ?></td>
+                <td><p class="text-lg text-black text-center"><?= $user['login'] == 0 ? 'NON' : 'AKTIF' ?></td>
                 <td><p class="text-lg text-black text-center">
                   <span class="p-1 px-2 rounded-lg text-white uppercase tracking-wider text-sm <?= $user['status'] == 'belum' ? 'bg-gray-700' : ''?> <?= $user['status'] == 'ujian' ? 'bg-yellow-500' : ''?> <?= $user['status'] == 'selesai' ? 'bg-green-700' : ''?>">
                     <?= $user['status'] ?>

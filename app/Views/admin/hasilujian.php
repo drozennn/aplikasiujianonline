@@ -35,7 +35,7 @@
               <tr class="odd:bg-slate-200 even:bg-slate-300">
                 <th><p class="text-lg text-black text-center"><?= $no ?></p></th>
                 <td><p class="text-lg text-black text-center capitalize"><?= $user['nama'] ?></p></td>
-                <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></p></td>
+                <td><p class="text-lg text-black text-center uppercase"><?= $user['univ'] ?></p></td>
                 <td><p class="text-lg text-black text-center"><?= $user['waktu_mulai'] == null ? 'Belum Mulai' : date('H:i:s', strtotime($user['waktu_mulai'])) ?></p></td>
                 <td><p class="text-lg text-black text-center"><?= $status ?></p></td>
                 <td class="flex items-center justify-center">
