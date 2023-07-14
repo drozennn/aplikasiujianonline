@@ -69,7 +69,7 @@
 
 
   <!-- untuk website -->
-  <div class="overflow-x-auto hidden shadow-xl lg:block">
+  <div class="hidden shadow-xl lg:block">
         <table class="table shadow-lg">
           <!-- head -->
           <thead>

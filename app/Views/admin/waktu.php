@@ -13,7 +13,7 @@
             <span><?= session()->get('change-time-error') ?></span>
         </div>
     <?php endif ?>
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold ">Waktu Peserta</h1>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black">Waktu Peserta</h1>
     <div class="w-full h-0.5 bg-black rounded-sm my-6"></div>
     <!-- untuk tampilan web -->
     <div class="bg-cyan-900 h-56 rounded-lg p-3 hidden md:block relative">
