@@ -41,7 +41,7 @@
         <tr>
           <td class="p-1.5">Universitas</td>
           <td class="p-1.5">:</td>
-          <td class="p-1.5"><?= $row['univ'] ?></td>
+          <td class="p-1.5 uppercase"><?= $row['univ'] ?></td>
         </tr>
         <tr>
           <td class="p-1.5">Status</td>
@@ -94,7 +94,7 @@
                 <td><p class="text-lg text-black text-center"><?= $user['nim'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['password'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['email'] ?></td>
-                <td><p class="text-lg text-black text-center"><?= $user['univ'] ?></td>
+                <td><p class="text-lg text-black text-center uppercase"><?= $user['univ'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['token'] ?></td>
                 <td><p class="text-lg text-black text-center"><?= $user['login'] == 0 ? 'NON' : 'AKTIF' ?></td>
                 <td><p class="text-lg text-black text-center">
